@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.CouldNotWriteUsersException;
 import exceptions.EmailAlreadyExistsException;
 
+import exceptions.UserNameOrPasswordAreIncorrect;
 import exceptions.UsernameAlreadyExistsException;
 import model.User;
 import org.apache.commons.io.FileUtils;
@@ -92,5 +93,15 @@ public class UserService {
 
     public static List<User> getUsers() {
         return users;
+    }
+    public static void checkIfUserNameOrPasswordAreCorrect(String username,String password) throws UserNameOrPasswordAreIncorrect {
+        boolean ok=true;
+        for (User user : users) {
+            if (username.equals(user.getUsername())&&encodePassword(username, password).equals(user.getPassword()))
+                ok=false;
+        }
+        if(ok==true){
+            throw new UserNameOrPasswordAreIncorrect(username, password);
+        }
     }
 }
