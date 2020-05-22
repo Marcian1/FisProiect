@@ -168,6 +168,38 @@ public class StudentController {
         }
 
     }
+
+    public void returnAction(ActionEvent actionEvent) {
+
+        //Create the table where the student can see al the books he borrowed
+        Stage viewBooksWindow = new Stage();
+        TableView<Book> bookTable = new TableView<>();
+
+        //Make the name column
+        TableColumn<Book, String> bookColumn = new TableColumn<>("MY BOOKS");
+        bookColumn.setMinWidth(300);
+        bookColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        bookTable.getColumns().add(bookColumn);
+
+        Button returnButton = new Button("RETURN");
+
+        //Create the scene and add it to the stage
+        VBox layout = new VBox(15, bookTable, returnButton);
+        layout.setAlignment(Pos.CENTER);
+
+        Scene viewBookScene = new Scene(layout, 303, 200);
+        viewBooksWindow.setScene(viewBookScene);
+
+        //Load the books in the table
+        for(Book b : JSONService.getBooks())
+        {
+            if(b.getBorrower().equals(JSONService.getBorrowerUsername())) bookTable.getItems().add(b);
+        }
+
+        //Display the stage on the screen
+        viewBooksWindow.show();
+    }
 }
 
 
