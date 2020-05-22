@@ -1,9 +1,9 @@
 services\FileSystemService.class
 services\UserService$1.class
 controllers\RegistrationController.class
-services\UserService.class
 exceptions\UsernameAlreadyExistsException.class
+model\User.class
+services\UserService.class
 exceptions\CouldNotWriteUsersException.class
 exceptions\EmailAlreadyExistsException.class
-model\User.class
 controllers\addDialogController.class

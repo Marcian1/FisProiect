@@ -125,4 +125,78 @@ public class LibrarianController {
         selectedBook.setType("Issued");
         JSONService.writeBookInFile(selectedBook);
     }
+
+    public void viewIssuesAction(ActionEvent actionEvent) {
+        TableView<String> issueTable = new TableView<>();
+
+        TableColumn<String, String> issueColumn = new TableColumn<>("Issue requests sent by students");
+        issueColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
+        issueTable.getColumns().add(issueColumn);
+
+        for(String s : JSONService.getIssues())
+        {
+            issueTable.getItems().add(s);
+        }
+
+        Button approveButton = new Button("Approve");
+        Button dismissButton = new Button("Dismiss");
+
+        HBox hBox = new HBox(18, approveButton, dismissButton);
+        VBox layout = new VBox(15, issueTable, hBox);
+
+        Scene scene = new Scene(layout, 400, 400);
+        Stage newWindow = new Stage();
+        newWindow.setScene(scene);
+
+        newWindow.show();
+        /*
+        approveButton.setOnAction(e -> {
+            String selectedIssue = issueTable.getSelectionModel().getSelectedItem();
+
+            for(Book b : JSONService.getBooks())
+            {
+                if(b.getName().equals(selectedIssue))
+                {
+                    //if(b.getType().equals("Available")) Available.getItems().remove(b);
+                    //else Unavailable.getItems().remove(b);
+
+                    Issued.getItems().add(b);
+                    issueTable.getItems().remove(selectedIssue);
+
+                    b.setType("Issued");
+                    JSONService.writeBookInFile();
+
+                    JSONService.getIssues().remove(selectedIssue);
+                    JSONService.writeIssueInFile();
+                    break;
+                }
+            }
+        });
+
+        dismissButton.setOnAction(e -> {
+            //Get the selected item from the issue request table
+            String selectedIssue = issueTable.getSelectionModel().getSelectedItem();
+
+            //Remove it from the table
+            issueTable.getItems().remove(selectedIssue);
+
+            //Mark the book as available and make it visible in the available table
+            for(Book b : JSONService.getBooks())
+            {
+                if(b.getName().equals(selectedIssue))
+                {
+                    b.setType("Available");
+                    Available.getItems().add(b);
+
+                    JSONService.writeBookInFile();
+
+                    break;
+                }
+            }
+
+            //Remove this issue request from the file
+            JSONService.getIssues().remove(selectedIssue);
+            JSONService.writeIssueInFile();
+        });*/
+    }
 }
