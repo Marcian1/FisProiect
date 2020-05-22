@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class JSONService
 {
     private static ArrayList<Book> books = new ArrayList<Book>();
+    private static ArrayList<String> booksToBeIssued = new ArrayList<>();
+    public static ArrayList<String> getIssues() { return booksToBeIssued; }
 
     private static String borrowerUsername;
     private static int borrowingLimit;
@@ -135,6 +137,33 @@ public class JSONService
         //System.out.println(Name);
 
         return temp;
+    }
+    public static void writeIssueInFile()
+    {
+        JSONArray issueList = new JSONArray();
+
+        for(String s : booksToBeIssued)
+        {
+            //Create the JSON book objet
+            JSONObject issueRequestDetails = new JSONObject();
+            issueRequestDetails.put("name", s);
+
+            JSONObject issueRequestObject = new JSONObject();
+            issueRequestObject.put("issue", issueRequestDetails);
+
+            //Add the JSON book object in a JSON Array
+            issueList.add(issueRequestObject);
+        }
+
+        try(FileWriter file = new FileWriter(System.getProperty("user.dir").toString()+"\\src\\main\\resources\\books.json"))
+        {
+            file.write(issueList.toJSONString());
+            file.flush();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 }
