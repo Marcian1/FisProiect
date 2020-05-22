@@ -138,6 +138,9 @@ public class StudentController {
         //Add the book in the Unavailable table
         StudentController.getInstance().getUnavailableTable().getItems().add(aux);
 
+        //Overwrite the books.JSON
+        JSONService.writeBookInFile(aux);
+
     }
 }
 
