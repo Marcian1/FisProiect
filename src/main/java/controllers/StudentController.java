@@ -168,6 +168,61 @@ public class StudentController {
         }
 
     }
+
+    public void returnAction(ActionEvent actionEvent) {
+
+        //Create the table where the student can see al the books he borrowed
+        Stage viewBooksWindow = new Stage();
+        TableView<Book> bookTable = new TableView<>();
+
+        //Make the name column
+        TableColumn<Book, String> bookColumn = new TableColumn<>("MY BOOKS");
+        bookColumn.setMinWidth(300);
+        bookColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        bookTable.getColumns().add(bookColumn);
+
+        Button returnButton = new Button("RETURN");
+
+        //Create the scene and add it to the stage
+        VBox layout = new VBox(15, bookTable, returnButton);
+        layout.setAlignment(Pos.CENTER);
+
+        Scene viewBookScene = new Scene(layout, 303, 200);
+        viewBooksWindow.setScene(viewBookScene);
+
+        //Load the books in the table
+        for(Book b : JSONService.getBooks())
+        {
+            if(b.getBorrower().equals(JSONService.getBorrowerUsername())) bookTable.getItems().add(b);
+        }
+
+        //Display the stage on the screen
+        viewBooksWindow.show();
+
+        returnButton.setOnAction(e -> {
+            //Delete the selected book from the table with the borrowed books
+            Book selectedBook = bookTable.getSelectionModel().getSelectedItem();
+            bookTable.getItems().remove(selectedBook);
+
+            //Remove the book from the JSON book list
+            JSONService.getBooks().remove(selectedBook);
+
+            //Move the book in the Student table from Unavailable to Available
+            StudentController.getInstance().getUnavailableTable().getItems().remove(selectedBook);
+            StudentController.getInstance().getAvailableTable().getItems().add(selectedBook);
+
+            //Make the book available and reset it's borrower
+            selectedBook.setBorrower("");
+            selectedBook.setType("Available");
+
+            //Overwrite the books.json
+            JSONService.writeBookInFile(selectedBook);
+
+            //Decrease the borrowing limit
+            JSONService.decreaseBorrowingLimit();
+        });
+    }
 }
 
 
