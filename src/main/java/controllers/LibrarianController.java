@@ -98,4 +98,7 @@ public class LibrarianController {
         window.setScene(RegisterScene);
         window.show();
     }
+
+    public void add(ActionEvent actionEvent) {
+    }
 }
