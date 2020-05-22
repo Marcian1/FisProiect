@@ -123,7 +123,7 @@ public class JSONService
 
         return temp;
     }
-    /*public static void writeIssueInFile()
+    public static void writeIssueInFile()
     {
         JSONArray issueList = new JSONArray();
 
@@ -149,6 +149,6 @@ public class JSONService
         {
             e.printStackTrace();
         }
-    }*/
+    }
 
 }

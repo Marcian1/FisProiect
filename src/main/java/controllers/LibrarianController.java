@@ -149,7 +149,7 @@ public class LibrarianController {
         newWindow.setScene(scene);
 
         newWindow.show();
-        /*
+
         approveButton.setOnAction(e -> {
             String selectedIssue = issueTable.getSelectionModel().getSelectedItem();
 
@@ -197,6 +197,8 @@ public class LibrarianController {
             //Remove this issue request from the file
             JSONService.getIssues().remove(selectedIssue);
             JSONService.writeIssueInFile();
-        });*/
+        });
     }
+
+
 }
