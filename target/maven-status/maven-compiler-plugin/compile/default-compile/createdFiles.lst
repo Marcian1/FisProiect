@@ -1,0 +1,16 @@
+services\FileSystemService.class
+services\UserService$1.class
+controllers\RegistrationController.class
+services\UserService.class
+services\JSONService.class
+exceptions\UserNameOrPasswordAreIncorrect.class
+exceptions\UsernameAlreadyExistsException.class
+controllers\mainWindowController.class
+exceptions\CouldNotWriteUsersException.class
+Main.class
+controllers\LibrarianController.class
+model\Book.class
+exceptions\EmailAlreadyExistsException.class
+controllers\StudentController.class
+model\User.class
+controllers\addDialogController.class
