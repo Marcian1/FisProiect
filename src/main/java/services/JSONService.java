@@ -30,6 +30,7 @@ public class JSONService
     }
     public static void setBorrowingLimit(int limit) { borrowingLimit = limit; }
 
+    public static void updateBorrowingLimit() { borrowingLimit++; }
 
     public static void writeBookInFile(Book newBook)
     {

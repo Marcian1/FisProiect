@@ -119,27 +119,53 @@ public class StudentController {
 
     public void handleBorrowButton(ActionEvent actionEvent) {
 
-        ObservableList<Book> allBooks, selectedBook;
-        Book aux;
+        if(JSONService.getBorrowingLimit() < 5)
+        {
+            ObservableList<Book> allBooks, selectedBook;
+            Book aux;
 
-        selectedBook = Available.getSelectionModel().getSelectedItems();
-        allBooks = Available.getItems();
+            selectedBook = Available.getSelectionModel().getSelectedItems();
+            allBooks = Available.getItems();
 
-        aux = selectedBook.get(0);
+            aux = selectedBook.get(0);
 
-        //Remove the selected book from the Available table
-        allBooks.remove(aux);
+            //Remove the selected book from the Available table
+            allBooks.remove(aux);
 
-        //Set the selected book as "unavailable" and set it's borrower
-        JSONService.getBooks().remove(aux);
-        aux.setType("Unavailable");
-        aux.setBorrower(JSONService.getBorrowerUsername());
+            //Set the selected book as "unavailable" and set it's borrower
+            JSONService.getBooks().remove(aux);
+            aux.setType("Unavailable");
+            aux.setBorrower(JSONService.getBorrowerUsername());
 
-        //Add the book in the Unavailable table
-        StudentController.getInstance().getUnavailableTable().getItems().add(aux);
+            //Add the book in the Unavailable table
+            StudentController.getInstance().getUnavailableTable().getItems().add(aux);
 
-        //Overwrite the books.JSON
-        JSONService.writeBookInFile(aux);
+            //Overwrite the books.JSON
+            JSONService.writeBookInFile(aux);
+
+            //Update the borrowing limit so the student would not be able to borrow more than 5 books
+            JSONService.updateBorrowingLimit();
+        }
+        else
+        {
+            //If the maximum number of books that ca be borrowed was reached display an alert box on the screen
+            Stage window = new Stage();
+            window.setTitle("ERROR");
+            window.initModality(Modality.APPLICATION_MODAL);
+
+            Label errorLabel1 = new Label("Return a book in order to");
+            Label errorLabel2 = new Label("borrow another.");
+            errorLabel1.setFont(new Font(25));
+            errorLabel2.setFont(new Font(25));
+
+            VBox vBox = new VBox(errorLabel1, errorLabel2);
+            vBox.setAlignment(Pos.CENTER);
+
+            Scene errorScene = new Scene(vBox, 350, 180);
+
+            window.setScene(errorScene);
+            window.show();
+        }
 
     }
 }
