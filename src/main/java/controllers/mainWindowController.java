@@ -97,6 +97,18 @@ public class mainWindowController {
                                 StudentController.getInstance().getIssuedTable().getItems().add(b);
                         }
 
+                        //Save Student's username in JSONService specific variable in case he choose to borrow a book
+                        JSONService.setBorrowerUsername(UserNameL.getText());
+
+                        //Go through all the books that this student borrowed and save the number
+                        int count = 0;
+                        for(Book b : JSONService.getBooks())
+                        {
+                            if(b.getBorrower().equals(UserNameL.getText())) count++;
+                        }
+
+                        JSONService.setBorrowingLimit(count);
+
                         break;
                     }
                 }
