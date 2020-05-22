@@ -14,7 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Book;
 import model.User;
+import services.JSONService;
 import services.UserService;
 
 
@@ -47,12 +49,26 @@ public class mainWindowController {
                             && UserService.encodePassword(UserNameL.getText(), PasswordL.getText()).equals(user.getPassword())
                             && user.getRole().equals("Librarian")) {
                         //Load the Librarian interface
-                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("LoginFXML.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Librarian.fxml"));
                         Scene RegisterScene = new Scene(root);
                         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         window.setScene(RegisterScene);
                         window.show();
 
+                        //Load the books from the books.JSON file and put them in the corresponding table
+                        JSONService.readBookFromFile();
+                        LibrarianController.getInstance().getAvailableColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
+                        LibrarianController.getInstance().getUnavailableColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
+                        LibrarianController.getInstance().getIssuedColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
+
+                        for(Book b : JSONService.getBooks()) {
+                            if (b.getType().equals("Available"))
+                                LibrarianController.getInstance().getAvailableTable().getItems().add(b);
+                            if (b.getType().equals("Unavailable"))
+                                LibrarianController.getInstance().getUnavailableTable().getItems().add(b);
+                            if (b.getType().equals("Issued"))
+                                LibrarianController.getInstance().getIssuedTable().getItems().add(b);
+                        }
 
                         break;
                     }
@@ -60,13 +76,28 @@ public class mainWindowController {
                             && UserService.encodePassword(UserNameL.getText(), PasswordL.getText()).equals(user.getPassword())
                             && user.getRole().equals("Student")) {
 
-                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("LoginFXML.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Student.fxml"));
                         Scene RegisterScene = new Scene(root);
                         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         window.setScene(RegisterScene);
                         window.show();
-                        break;
 
+                        //Load the books from the books.JSON file and put them in the corresponding table
+                        JSONService.readBookFromFile();
+                        StudentController.getInstance().getAvailableColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
+                        StudentController.getInstance().getUnavailableColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
+                        StudentController.getInstance().getIssuedColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
+
+                        for(Book b : JSONService.getBooks()) {
+                            if (b.getType().equals("Available"))
+                                StudentController.getInstance().getAvailableTable().getItems().add(b);
+                            if (b.getType().equals("Unavailable"))
+                                StudentController.getInstance().getUnavailableTable().getItems().add(b);
+                            if (b.getType().equals("Issued"))
+                                StudentController.getInstance().getIssuedTable().getItems().add(b);
+                        }
+
+                        break;
                     }
                 }
             }catch (UserNameOrPasswordAreIncorrect  e) {

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentController">
+   <children>
+      <TableView fx:id="Available" layoutX="24.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="AvailableColumn" prefWidth="196.79998779296875" text="Available" />
+        </columns>
+      </TableView>
+      <TableView fx:id="Unavailable" layoutX="224.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="UnavailableColumn" prefWidth="196.0" text="Unavailable" />
+        </columns>
+      </TableView>
+      <TableView fx:id="Issued" layoutX="424.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="IssuedColumn" prefWidth="199.20001220703125" text="Issued" />
+        </columns>
+      </TableView>
+      <Button fx:id="goBackButton" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBackAction" text="Go Back" />
+   </children>
+</Pane>
