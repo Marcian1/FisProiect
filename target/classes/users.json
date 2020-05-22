@@ -4,14 +4,22 @@
   "role" : "Student",
   "mail" : "aaaaaa",
   "fullName" : "aaa",
-  "phoneNumber" : "aaaaaa",
-  "adress" : "aaaaa"
+  "adress" : "aaaaa",
+  "phoneNumber" : "aaaaaa"
 }, {
   "username" : "wwww",
   "password" : "\u0000������y��P���\u001CY��MU$��\u001C^z`��l��\t�!`k���j*��\u0017,�\nR�\u0012�-�~%f1+73[�",
   "role" : "Librarian",
   "mail" : "wwwwwwwww",
   "fullName" : "wwwwwww",
-  "phoneNumber" : "wwwwww",
-  "adress" : "wwwwwww"
+  "adress" : "wwwwwww",
+  "phoneNumber" : "wwwwww"
+}, {
+  "username" : "bbb",
+  "password" : "[\u001Eo��\rh\b�v����O\u001B3��ɕ\u0014[��7ץ�\u0001h�\u000F=�$��\u0001�X�\u0011m�F+@&�r����oF�94Lbx",
+  "role" : "Student",
+  "mail" : "dwqdw",
+  "fullName" : "dqwd",
+  "adress" : "qwdqwdq",
+  "phoneNumber" : "dqwdqw"
 } ]

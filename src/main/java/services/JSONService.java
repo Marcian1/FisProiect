@@ -13,10 +13,23 @@ public class JSONService
 {
     private static ArrayList<Book> books = new ArrayList<Book>();
 
+    private static String borrowerUsername;
+    private static int borrowingLimit;
+
+    public static String getBorrowerUsername() { return borrowerUsername; }
+    public static int getBorrowingLimit() { return borrowingLimit; }
+
     public static ArrayList<Book> getBooks()
     {
         return books;
     }
+
+    public static void setBorrowerUsername(String borrower)
+    {
+        borrowerUsername = borrower;
+    }
+    public static void setBorrowingLimit(int limit) { borrowingLimit = limit; }
+
 
     public static void writeBookInFile(Book newBook)
     {
