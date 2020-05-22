@@ -199,6 +199,29 @@ public class StudentController {
 
         //Display the stage on the screen
         viewBooksWindow.show();
+
+        returnButton.setOnAction(e -> {
+            //Delete the selected book from the table with the borrowed books
+            Book selectedBook = bookTable.getSelectionModel().getSelectedItem();
+            bookTable.getItems().remove(selectedBook);
+
+            //Remove the book from the JSON book list
+            JSONService.getBooks().remove(selectedBook);
+
+            //Move the book in the Student table from Unavailable to Available
+            StudentController.getInstance().getUnavailableTable().getItems().remove(selectedBook);
+            StudentController.getInstance().getAvailableTable().getItems().add(selectedBook);
+
+            //Make the book available and reset it's borrower
+            selectedBook.setBorrower("");
+            selectedBook.setType("Available");
+
+            //Overwrite the books.json
+            JSONService.writeBookInFile(selectedBook);
+
+            //Decrease the borrowing limit
+            JSONService.decreaseBorrowingLimit();
+        });
     }
 }
 
