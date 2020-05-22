@@ -99,6 +99,13 @@ public class LibrarianController {
         window.show();
     }
 
-    public void add(ActionEvent actionEvent) {
+    public void add(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("addWindow.fxml"));
+        Scene AddBookScene =  new Scene(root);
+        //Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        final Stage window = new Stage();
+        window.setScene(AddBookScene);
+
+        window.show();
     }
 }
