@@ -1,1 +1,17 @@
-[]
+[ {
+  "username" : "aaa",
+  "password" : "z�*5\t]����\u000E�\u00101\u000B@�8�, ��\u0010��^Kć;���)�K.�3��\u0000\u0003m�=\\Yz~t)�p��x�M�",
+  "role" : "Student",
+  "mail" : "aaaaaa",
+  "fullName" : "aaa",
+  "phoneNumber" : "aaaaaa",
+  "adress" : "aaaaa"
+}, {
+  "username" : "wwww",
+  "password" : "\u0000������y��P���\u001CY��MU$��\u001C^z`��l��\t�!`k���j*��\u0017,�\nR�\u0012�-�~%f1+73[�",
+  "role" : "Librarian",
+  "mail" : "wwwwwwwww",
+  "fullName" : "wwwwwww",
+  "phoneNumber" : "wwwwww",
+  "adress" : "wwwwwww"
+} ]
