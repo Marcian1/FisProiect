@@ -4,6 +4,14 @@
   "role" : "Student",
   "mail" : "aaaaaa",
   "fullName" : "aaa",
-  "adress" : "aaaaa",
-  "phoneNumber" : "aaaaaa"
+  "phoneNumber" : "aaaaaa",
+  "adress" : "aaaaa"
+}, {
+  "username" : "wwww",
+  "password" : "\u0000������y��P���\u001CY��MU$��\u001C^z`��l��\t�!`k���j*��\u0017,�\nR�\u0012�-�~%f1+73[�",
+  "role" : "Librarian",
+  "mail" : "wwwwwwwww",
+  "fullName" : "wwwwwww",
+  "phoneNumber" : "wwwwww",
+  "adress" : "wwwwwww"
 } ]
