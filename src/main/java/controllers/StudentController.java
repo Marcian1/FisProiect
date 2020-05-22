@@ -116,6 +116,29 @@ public class StudentController {
         //Display the stage on the screen
         viewBooksWindow.show();
     }
+
+    public void handleBorrowButton(ActionEvent actionEvent) {
+
+        ObservableList<Book> allBooks, selectedBook;
+        Book aux;
+
+        selectedBook = Available.getSelectionModel().getSelectedItems();
+        allBooks = Available.getItems();
+
+        aux = selectedBook.get(0);
+
+        //Remove the selected book from the Available table
+        allBooks.remove(aux);
+
+        //Set the selected book as "unavailable" and set it's borrower
+        JSONService.getBooks().remove(aux);
+        aux.setType("Unavailable");
+        aux.setBorrower(JSONService.getBorrowerUsername());
+
+        //Add the book in the Unavailable table
+        StudentController.getInstance().getUnavailableTable().getItems().add(aux);
+
+    }
 }
 
 
