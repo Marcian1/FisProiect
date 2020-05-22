@@ -108,4 +108,21 @@ public class LibrarianController {
 
         window.show();
     }
+
+    public void handleIssueAction(ActionEvent actionEvent) {
+        //Save the selection in selectedBook variable
+        Book selectedBook = (Book) Available.getSelectionModel().getSelectedItem();
+
+        //Delete it from the available table
+        Available.getItems().remove(selectedBook);
+
+        //Add the book to issued section
+        Issued.getItems().add(selectedBook);
+
+        //Mark the book as "Issued" and overwrite the books.json
+        JSONService.getBooks().remove(selectedBook);
+
+        selectedBook.setType("Issued");
+        JSONService.writeBookInFile(selectedBook);
+    }
 }
