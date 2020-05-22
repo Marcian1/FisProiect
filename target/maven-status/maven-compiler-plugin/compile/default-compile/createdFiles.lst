@@ -6,3 +6,4 @@ exceptions\UsernameAlreadyExistsException.class
 exceptions\CouldNotWriteUsersException.class
 exceptions\EmailAlreadyExistsException.class
 model\User.class
+controllers\addDialogController.class
