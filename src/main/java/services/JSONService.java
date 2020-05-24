@@ -13,6 +13,7 @@ public class JSONService
 {
     private static ArrayList<Book> books = new ArrayList<Book>();
     private static ArrayList<String> booksToBeIssued = new ArrayList<>();
+
     public static ArrayList<String> getIssues() { return booksToBeIssued; }
 
     private static String borrowerUsername;
@@ -155,7 +156,7 @@ public class JSONService
             issueList.add(issueRequestObject);
         }
 
-        try(FileWriter file = new FileWriter(System.getProperty("user.dir").toString()+"\\src\\main\\resources\\books.json"))
+        try(FileWriter file = new FileWriter(System.getProperty("user.dir").toString()+"\\src\\main\\resources\\issues.json"))
         {
             file.write(issueList.toJSONString());
             file.flush();
@@ -164,6 +165,74 @@ public class JSONService
         {
             e.printStackTrace();
         }
+    }
+
+    public static void writeIssueInFile(String newIssue)
+    {
+        JSONArray issueList = new JSONArray();
+
+        booksToBeIssued.add(newIssue);
+
+        for(String s : booksToBeIssued)
+        {
+            //Create the JSON book objet
+            JSONObject issueRequestDetails = new JSONObject();
+            issueRequestDetails.put("name", s);
+
+            JSONObject issueRequestObject = new JSONObject();
+            issueRequestObject.put("issue", issueRequestDetails);
+
+            //Add the JSON book object in a JSON Array
+            issueList.add(issueRequestObject);
+        }
+
+        try(FileWriter file = new FileWriter(System.getProperty("user.dir").toString()+"\\src\\main\\resources\\issues.json"))
+        {
+            file.write(issueList.toJSONString());
+            file.flush();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void readIssueFromFile()
+    {
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(System.getProperty("user.dir").toString()+"\\src\\main\\resources\\issues.json"))
+        {
+            //Read JSON file
+            Object obj = jsonParser.parse(reader);
+
+            JSONArray issueList = (JSONArray) obj;
+
+            //Iterate over book array
+            issueList.forEach( b -> booksToBeIssued.add(parseIssueObject( (JSONObject) b ) ) );
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (EOFException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String parseIssueObject(JSONObject issue)
+    {
+        //Get book object within list
+        JSONObject issueObject = (JSONObject) issue.get("issue");
+
+        //Get book's name, type and borrower
+        String Name = (String) issueObject.get("name");
+
+        //System.out.println(Name);
+
+        return Name;
     }
 
 }

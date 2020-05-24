@@ -80,6 +80,7 @@ public class StudentController {
 
     public void goBackAction(ActionEvent actionEvent) throws IOException {
         JSONService.getBooks().removeAll(JSONService.getBooks());
+        JSONService.getIssues().removeAll(JSONService.getIssues());
 
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainWindow.fxml"));
         Scene RegisterScene =  new Scene(root);
@@ -256,6 +257,26 @@ public class StudentController {
 
         //Display the stage on the screen
         viewBooksWindow.show();
+
+        issueButton.setOnAction(e -> {
+            //Delete the selected book from the table with the borrowed books
+            Book selectedBook = bookTable.getSelectionModel().getSelectedItem();
+            bookTable.getItems().remove(selectedBook);
+
+            Unavailable.getItems().remove(selectedBook);
+
+            //Remove the book from the JSONService book list
+            JSONService.getBooks().remove(selectedBook);
+
+            //Overwrite the books.json
+            selectedBook.setType("unknown");
+            selectedBook.setBorrower("");
+
+            JSONService.writeBookInFile(selectedBook);
+
+            //Send the issue request to issues.json
+            JSONService.writeIssueInFile(selectedBook.getName());
+        });
     }
 }
 

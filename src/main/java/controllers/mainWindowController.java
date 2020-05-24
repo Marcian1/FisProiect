@@ -55,6 +55,9 @@ public class mainWindowController {
                         window.setScene(RegisterScene);
                         window.show();
 
+                        //Load issue requests from issues.json
+                        JSONService.readIssueFromFile();
+
                         //Load the books from the books.JSON file and put them in the corresponding table
                         JSONService.readBookFromFile();
                         LibrarianController.getInstance().getAvailableColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
