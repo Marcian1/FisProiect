@@ -28,6 +28,6 @@
       <Button fx:id="myBooksButton" layoutX="24.0" layoutY="286.0" mnemonicParsing="false" onAction="#viewMyBooks" text="My books" />
        <Button fx:id="borrowButton" layoutX="572.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleBorrowButton" text="Borrow" />
        <Button fx:id="returnButton" layoutX="474.0" layoutY="265.0" mnemonicParsing="false" onAction="#returnAction" text="Return book" />
-
+       <Button fx:id="issueRequestButton" layoutX="108.0" layoutY="278.0" mnemonicParsing="false" onAction="#makeIssueRequest" text="Request an issue" />
    </children>
 </Pane>

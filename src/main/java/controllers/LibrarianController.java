@@ -91,6 +91,7 @@ public class LibrarianController {
 
     public void goBackAction(ActionEvent actionEvent) throws IOException {
         JSONService.getBooks().removeAll(JSONService.getBooks());
+        JSONService.getIssues().removeAll(JSONService.getIssues());
 
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainWindow.fxml"));
         Scene RegisterScene =  new Scene(root);

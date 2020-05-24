@@ -80,6 +80,7 @@ public class StudentController {
 
     public void goBackAction(ActionEvent actionEvent) throws IOException {
         JSONService.getBooks().removeAll(JSONService.getBooks());
+        JSONService.getIssues().removeAll(JSONService.getIssues());
 
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainWindow.fxml"));
         Scene RegisterScene =  new Scene(root);
@@ -221,6 +222,60 @@ public class StudentController {
 
             //Decrease the borrowing limit
             JSONService.decreaseBorrowingLimit();
+        });
+    }
+
+    public void makeIssueRequest(ActionEvent actionEvent) {
+
+        //Create the table where the student can see al the books he borrowed
+        Stage viewBooksWindow = new Stage();
+        TableView<Book> bookTable = new TableView<>();
+
+        //Make the name column
+        TableColumn<Book, String> bookColumn = new TableColumn<>("MY BOOKS");
+        bookColumn.setMinWidth(300);
+        bookColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        bookTable.getColumns().add(bookColumn);
+
+        Label errorLabel = new Label();
+
+        Button issueButton = new Button("ISSUE");
+
+        //Create the scene and add it to the stage
+        VBox layout = new VBox(15, bookTable,errorLabel , issueButton);
+        layout.setAlignment(Pos.CENTER);
+
+        Scene viewBookScene = new Scene(layout, 303, 200);
+        viewBooksWindow.setScene(viewBookScene);
+
+        //Load the books in the table
+        for(Book b : JSONService.getBooks())
+        {
+            if(b.getBorrower().equals(JSONService.getBorrowerUsername())) bookTable.getItems().add(b);
+        }
+
+        //Display the stage on the screen
+        viewBooksWindow.show();
+
+        issueButton.setOnAction(e -> {
+            //Delete the selected book from the table with the borrowed books
+            Book selectedBook = bookTable.getSelectionModel().getSelectedItem();
+            bookTable.getItems().remove(selectedBook);
+
+            Unavailable.getItems().remove(selectedBook);
+
+            //Remove the book from the JSONService book list
+            JSONService.getBooks().remove(selectedBook);
+
+            //Overwrite the books.json
+            selectedBook.setType("unknown");
+            selectedBook.setBorrower("");
+
+            JSONService.writeBookInFile(selectedBook);
+
+            //Send the issue request to issues.json
+            JSONService.writeIssueInFile(selectedBook.getName());
         });
     }
 }
