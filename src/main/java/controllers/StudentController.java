@@ -256,8 +256,6 @@ public class StudentController {
 
         //Display the stage on the screen
         viewBooksWindow.show();
-
-        
     }
 }
 
