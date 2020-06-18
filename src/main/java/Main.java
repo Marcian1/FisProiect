@@ -16,6 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         UserService.loadUsersFromFile();
+        System.out.println(getClass().getClassLoader().getResource("mainWindow.fxml"));
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainWindow.fxml"));
         primaryStage.setTitle("Registration Example");
         primaryStage.setScene(new Scene(root, 600, 600));

@@ -40,6 +40,7 @@ public class RegistrationController {
     @FXML
     public void handleRegisterAction() {
         try {
+
             UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue(),FullName.getText(),Adress.getText(),PhoneNumber.getText(),Mail.getText());
             registrationMessage.setText("Account created successfully!");
         } catch (UsernameAlreadyExistsException e) {

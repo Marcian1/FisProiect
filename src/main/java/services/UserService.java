@@ -21,21 +21,25 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
 public class UserService {
 
-    private static List<User> users;
+    private static List<User> users=new ArrayList<User>();
     private static final Path USERS_PATH = Paths.get(System.getProperty("user.dir").toString()+"\\src\\main\\resources\\users.json");
 
     public static void loadUsersFromFile() throws IOException {
 
         if (!Files.exists(USERS_PATH)) {
+
             FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
         }
 
+        if(Files.readAllLines(USERS_PATH).isEmpty())
+            return;
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -50,12 +54,16 @@ public class UserService {
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
+        if(users.isEmpty())
+            return;
         for (User user : users) {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
         }
     }
     private static void checkEmailDoesNotAlreadyExistsException(String Email) throws EmailAlreadyExistsException {
+        if(users.isEmpty())
+            return;
         for (User user : users) {
             if (Email.equals(user.getMail()))
                 throw new EmailAlreadyExistsException(Email);

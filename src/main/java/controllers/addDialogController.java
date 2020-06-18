@@ -26,6 +26,8 @@ public class addDialogController {
 
     public void add(ActionEvent actionEvent)
     {
+        if(bookName.getText().equals(""))
+            return;
         LibrarianController.getInstance().getAvailableColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
 
         JSONService.writeBookInFile(new Book(bookName.getText(), "Available"));
