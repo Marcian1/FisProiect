@@ -113,7 +113,8 @@ public class LibrarianController {
     public void handleIssueAction(ActionEvent actionEvent) {
         //Save the selection in selectedBook variable
         Book selectedBook = (Book) Available.getSelectionModel().getSelectedItem();
-
+        if(!(selectedBook instanceof  Book))
+            return;
         //Delete it from the available table
         Available.getItems().remove(selectedBook);
 

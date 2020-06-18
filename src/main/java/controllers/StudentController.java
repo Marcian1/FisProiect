@@ -126,10 +126,12 @@ public class StudentController {
             Book aux;
 
             selectedBook = Available.getSelectionModel().getSelectedItems();
+
             allBooks = Available.getItems();
 
             aux = selectedBook.get(0);
-
+            if(!(aux instanceof  Book))
+               return;
             //Remove the selected book from the Available table
             allBooks.remove(aux);
 
@@ -204,6 +206,8 @@ public class StudentController {
         returnButton.setOnAction(e -> {
             //Delete the selected book from the table with the borrowed books
             Book selectedBook = bookTable.getSelectionModel().getSelectedItem();
+            if(!(selectedBook instanceof  Book))
+                return;
             bookTable.getItems().remove(selectedBook);
 
             //Remove the book from the JSON book list
@@ -261,6 +265,8 @@ public class StudentController {
         issueButton.setOnAction(e -> {
             //Delete the selected book from the table with the borrowed books
             Book selectedBook = bookTable.getSelectionModel().getSelectedItem();
+            if(!(selectedBook instanceof  Book))
+                return;
             bookTable.getItems().remove(selectedBook);
 
             Unavailable.getItems().remove(selectedBook);

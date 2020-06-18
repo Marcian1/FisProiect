@@ -21,6 +21,8 @@ import services.UserService;
 
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 
 public class mainWindowController {
@@ -56,9 +58,11 @@ public class mainWindowController {
                         window.show();
 
                         //Load issue requests from issues.json
+                       if(Files.exists(Paths.get(System.getProperty("user.dir").toString() + "\\src\\main\\resources\\issues.json")))
                         JSONService.readIssueFromFile();
 
                         //Load the books from the books.JSON file and put them in the corresponding table
+                        if(Files.exists(Paths.get(System.getProperty("user.dir").toString() + "\\src\\main\\resources\\books.json")))
                         JSONService.readBookFromFile();
                         LibrarianController.getInstance().getAvailableColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
                         LibrarianController.getInstance().getUnavailableColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -86,7 +90,8 @@ public class mainWindowController {
                         window.show();
 
                         //Load the books from the books.JSON file and put them in the corresponding table
-                        JSONService.readBookFromFile();
+                        if(Files.exists(Paths.get(System.getProperty("user.dir").toString() + "\\src\\main\\resources\\books.json")))
+                            JSONService.readBookFromFile();
                         StudentController.getInstance().getAvailableColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
                         StudentController.getInstance().getUnavailableColumn().setCellValueFactory(new PropertyValueFactory<>("name"));
                         StudentController.getInstance().getIssuedColumn().setCellValueFactory(new PropertyValueFactory<>("name"));

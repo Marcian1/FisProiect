@@ -1,25 +1,17 @@
 [ {
-  "username" : "aaa",
-  "password" : "z�*5\t]����\u000E�\u00101\u000B@�8�, ��\u0010��^Kć;���)�K.�3��\u0000\u0003m�=\\Yz~t)�p��x�M�",
+  "username" : "student",
+  "password" : "�\u0013�Xu\u0005\u0004���r�u�,0�'�L4)��/���NV\u001E4gl�7%��11{\u0011bec�\u0000��z���{�]�\u0016��s�",
   "role" : "Student",
-  "mail" : "aaaaaa",
-  "fullName" : "aaa",
-  "adress" : "aaaaa",
-  "phoneNumber" : "aaaaaa"
+  "mail" : "student",
+  "adress" : "student",
+  "phoneNumber" : "student",
+  "fullName" : "student"
 }, {
-  "username" : "wwww",
-  "password" : "\u0000������y��P���\u001CY��MU$��\u001C^z`��l��\t�!`k���j*��\u0017,�\nR�\u0012�-�~%f1+73[�",
+  "username" : "librarian",
+  "password" : "V4���_ph�jOy\f�T程\u0012r1��s\\/l�\tq\u0003w\u0004r�=�������*%��#z�#}q��b�0GN��",
   "role" : "Librarian",
-  "mail" : "wwwwwwwww",
-  "fullName" : "wwwwwww",
-  "adress" : "wwwwwww",
-  "phoneNumber" : "wwwwww"
-}, {
-  "username" : "bbb",
-  "password" : "[\u001Eo��\rh\b�v����O\u001B3��ɕ\u0014[��7ץ�\u0001h�\u000F=�$��\u0001�X�\u0011m�F+@&�r����oF�94Lbx",
-  "role" : "Student",
-  "mail" : "dwqdw",
-  "fullName" : "dqwd",
-  "adress" : "qwdqwdq",
-  "phoneNumber" : "dqwdqw"
+  "mail" : "librarian",
+  "adress" : "librarian",
+  "phoneNumber" : "librarian",
+  "fullName" : "librarian"
 } ]
