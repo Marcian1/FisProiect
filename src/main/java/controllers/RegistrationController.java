@@ -19,18 +19,18 @@ import java.io.IOException;
 
 public class RegistrationController {
 
-    @FXML private TextField FullName;
-    @FXML private TextField PhoneNumber;
-    @FXML private TextField Mail;
-    @FXML private TextField Adress;
+    @FXML public TextField FullName;
+    @FXML public TextField PhoneNumber;
+    @FXML public TextField Mail;
+    @FXML public TextField Adress;
     @FXML
-    private Text registrationMessage;
+    public Text registrationMessage;
     @FXML
-    private PasswordField passwordField;
+    public PasswordField passwordField;
     @FXML
-    private TextField usernameField;
+    public TextField usernameField;
     @FXML
-    private ChoiceBox role;
+    public ChoiceBox role;
 
     @FXML
     public void initialize() {
