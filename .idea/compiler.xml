@@ -9,6 +9,7 @@
         <module name="FisProiect" />
         <module name="LibraryManagementSystem" />
         <module name="LibraryManagementApp" />
+        <module name="ProiectFis" />
         <module name="FISProject" />
       </profile>
     </annotationProcessing>

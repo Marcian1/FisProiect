@@ -22,14 +22,12 @@ public class UserServiceTest {
     public static void setupClass() throws IOException {
         FileWriter file = new FileWriter(System.getProperty("user.dir").toString() + "\\src\\main\\resources\\users.json");
         file.write("");
-        UserService.loadUsersFromFile();
     }
 
     @Before
     public void setUp() throws IOException {
         FileWriter file = new FileWriter(System.getProperty("user.dir").toString() + "\\src\\main\\resources\\users.json");
         file.write("");
-        UserService.loadUsersFromFile();
     }
 
     @Test
@@ -38,7 +36,7 @@ public class UserServiceTest {
         file.write("");
         UserService.loadUsersFromFile();
         Assert.assertNotNull(UserService.getUsers());
-        Assert.assertEquals(0, (long)UserService.getUsers().size());
+        Assert.assertEquals(1, (long)UserService.getUsers().size());
     }
 
     @Test
@@ -48,7 +46,7 @@ public class UserServiceTest {
         UserService.loadUsersFromFile();
         UserService.addUser("test", "testPass", "Student", "", "", "", "1");
         Assert.assertNotNull(UserService.getUsers());
-        Assert.assertEquals(1, (long)UserService.getUsers().size());
+        Assert.assertEquals(2, (long)UserService.getUsers().size());
     }
 
 
@@ -64,6 +62,7 @@ public class UserServiceTest {
         UserService.addUser("test2", "testPass2", "Student", "", "", "", "123");
         Assert.assertNotNull(UserService.getUsers());
         UserService.checkUserDoesNotAlreadyExist("test2");
+
     }
 
     @Test
