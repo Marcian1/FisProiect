@@ -6,8 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="FisProiect" />
         <module name="LibraryManagementSystem" />
         <module name="LibraryManagementApp" />
+        <module name="ProiectFis" />
         <module name="FISProject" />
       </profile>
     </annotationProcessing>
